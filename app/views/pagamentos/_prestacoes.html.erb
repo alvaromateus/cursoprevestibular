@@ -1,0 +1,8 @@
+<br>
+<strong>Valor Material</strong>: <%= number_to_currency(@valor_material, :unit => "R$") %><br>
+<br>
+<% @prestacao.each do |p| %>
+Valor: <%= number_to_currency(p[:valor_prestacao], :unit => "R$") %><br>
+Data de Vencimento: <%= p[:dia].day %>/<%=p[:dia].month%>/<%=p[:dia].year%><br><hr>
+<% end %><br>
+<p> <%= link_to "Confirmar", :action => "confirmar" %></p>

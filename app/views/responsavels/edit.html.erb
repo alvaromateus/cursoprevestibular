@@ -1,0 +1,17 @@
+<html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<%= javascript_include_tag :defaults %>
+<%= stylesheet_link_tag 'default' %>
+
+<h2><% if @responsavel.new_record? %>Cadastro de responsavel <% else %> Editando o responsavel  <%= @responsavel.nome %> <% end %></h2>
+
+<div class="erro">
+<%= error_messages_for "responsavel" %>
+<%= error_messages_for "cep" %>
+</div>
+
+<div class="form">
+<%= render :partial => 'form' %>
+</div>
+
+</html>

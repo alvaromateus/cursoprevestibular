@@ -1,0 +1,32 @@
+<h2>Responsaveis</h2>
+<%= stylesheet_link_tag 'default' %>
+
+<% if flash[:notice] %>
+
+<p style="color: green; font-style: italic"><%= flash[:notice] %></p>
+<% end %>
+
+<p> <%= link_to "Novo Responsavel", :action => "edit" %></p>
+<div id="content">
+<table border="0" cellpading="1" cellpacing="1">
+<tbody>
+<tr>
+	<tt></tt>
+	<tt></tt>
+	<tt></tt>
+	<tt></tt>
+</tr>
+<% @responsavel.each do |r| %>
+<tr>
+	<td><%= r.nome %><td>
+	<td><%= r.telefone %><td>
+	<td><%= r.celular %><td>
+	<td>
+		<%= link_to "Editar", :action => "edit", :id => r %> ou
+		<%= link_to "Excluir", { :action => "delete", :id => r }, :confirm => "Deseja realmente excluir o Responsavel?" %>
+	</td>
+</tr>
+<tbody>
+<% end %>
+</table>
+</div>

@@ -1,0 +1,22 @@
+<% @debitos = Aluno.find(session[:aluno_id]).debito_curso %>
+<% @debito_material = Aluno.find(session[:aluno_id]).debito_material %>
+<% @debito_material = @debito_material.find(:all, :conditions  => "pago = false")%>
+
+<% unless @debito_material.empty? || @debito_material[0].pago %>
+	<h3>Debito de material</h3>
+	Valor: <%= number_to_currency(@debito_material[0].valor, :unit => "R$") %><br>
+	Vencimento: <%= @debito_material[0].data_vencimento %>
+	<%= link_to "Realizar pagamento", { :controller => "pagamentos", :action => "realizar_material", :debito => @debito_material[0].id }, :confirm => "Deseja realmente colocar o debito com material como pago?" %><br><br><br>
+<% end %>
+
+<h3>Debitos do aluno</h3>
+<% @debitos.each do |d| %>
+<% unless d.pago %>
+Valor: <%= number_to_currency(d.valor, :unit => "R$") %><br>
+Vencimento: <%= d.data_vencimento %>
+<%= link_to "Realizar pagamento", { :controller => "pagamentos", :action => "realizar", :debito => d.id }, :confirm => "Deseja realmente colocar esta parcela como paga?" %>
+<br<br><br>
+<% end %>
+<% end %>
+<br>
+

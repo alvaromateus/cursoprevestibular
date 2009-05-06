@@ -1,0 +1,8 @@
+<% form_for :pesquisa, @pesquisa, :url => {:action => 'list' } do |u| %>
+<p>
+<label_for"nome">Nome do Aluno: </label>
+<%= u.text_field "nome", :size => 25 %>
+<%= submit_tag "Pesquisar" %>
+</p>
+<% end -%>
+<br>

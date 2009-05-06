@@ -1,0 +1,20 @@
+<% form_for :curso, @curso, :url => {:action => 'edit' } do |u| %>
+
+<p>
+<label_for"nome">Nome: </label>
+<%= u.text_field "nome", :size => 25 %>
+</p>
+
+<p>
+<label_for"valor_curso">Custo do curso: </label>
+R$ <%= u.text_field "valor_curso", :size => 15 %>
+</p>
+
+<p>
+<label_for"valor_material">Custo do material: </label>
+R$ <%= u.text_field "valor_material", :size => 15 %>
+</p>
+
+<%= submit_tag "Salvar" %>  ou <%= link_to "Cancelar", :action => "list" %>
+<% end -%>
+<br>

@@ -1,0 +1,8 @@
+development:
+  adapter: mysql
+  database: gama
+  host: localhost
+  encoding: utf8
+  username: root
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock

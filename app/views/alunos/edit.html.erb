@@ -1,0 +1,70 @@
+<%	if @aluno.responsavel
+		unless @aluno.responsavel.debito_curso.empty? #se o responsavel tiver debito 
+			@aluno.responsavel.debito_curso.each do |d| # verifica se esta pago ou
+				@devedor = d.pago
+			end			
+		else
+			@devedor = true
+		end
+	end
+	unless @aluno.responsavel
+		unless @aluno.debito_curso.empty?
+    		@aluno.debito_curso.each do |d|
+	  			@devedor = d.pago
+			end
+		else
+			@devedor = true
+		end
+  	end
+%>
+<html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<%= javascript_include_tag :defaults %>
+<%= stylesheet_link_tag 'default' %>
+
+<p style="color: green; font-style: italic"><%= flash[:notice] %></p>
+
+<h2><% if @aluno.new_record? %> Cadastro de Aluno </h2><br>
+<% else %>  <h2>Editando o aluno <%= @aluno.nome %> </h2>
+
+<% unless @aluno.responsavel  #se nao houver responsavel mostra opcao para cria-lo %>
+<%= link_to "Cadastrar Responsavel", :controller  => "responsavel", :action => "edit" %> 
+<% if @devedor  %>
+	- <%= link_to "Agendar pagamento", :controller  => "pagamentos", :action => "agendar"  %> <br><br>
+	<% end %>
+<% end %>
+
+<% if @aluno.responsavel  #se houver responsavel mostra opcao para edita-lo %>
+<%= link_to "Editar Responsavel", :controller  => "responsavel", :action => "edit", :id => @aluno.responsavel.id %> 
+<% if @aluno.responsavel # se houver responsavel verifica debitos do responsavel
+	if @devedor %>	  	
+-	<%= link_to "Agendar pagamento", :controller  => "pagamentos", :action => "agendar", :id => @aluno.id  %> 
+	<% end %><br><br>
+<% end %>	
+<% end %>
+<% end %>
+
+
+<div class="erro">
+<%= error_messages_for "aluno" %>
+<%= error_messages_for "cep" %>
+</div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="70%" valign="top"><div class="form">
+	<%= render :partial => 'form' %>
+	</div>
+	</td>
+    <td width="30%" valign="top">
+		<div class="form">
+		<% unless @aluno.new_record? 
+		    unless @devedor %>
+    		    <%= render :partial => 'debitos' %>           
+           <% end %>
+		<% end %>
+		</div>
+	</td>
+  </tr>
+</table>
+</html>

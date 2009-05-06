@@ -1,0 +1,43 @@
+<% form_for :alunos, @alunos, :url => {:action => 'alunos' } do |u| %>
+
+<%= u.collection_select :id, @cursos, :id , :nome, options = {:prompt => "Selecione o tipo curso"}, id => 'id' %>
+
+<%= submit_tag "Atualizar" %>
+<% end -%>
+<br>
+
+<h2>Alunos</h2>
+<%= stylesheet_link_tag 'default' %>
+
+<div id="pesquisa"></div><br>
+<table border="0" cellpading="1" cellpacing="1">
+<tbody>
+<tr>
+	<tt></tt>
+	<tt></tt>
+	<tt></tt>
+	<tt></tt>
+</tr>
+<% unless (@alunos == nil) 
+if @alunos.empty? %>
+Nenhum aluno <br>
+<% else %>
+@alunos.each do |aluno| %>
+<tr>
+	<td><%= aluno.nome %><td>
+	<td><%= aluno.telefone %><td>
+	<td><%= aluno.celular %><td>
+	<td>
+		<%= link_to "Editar", :controller => "aluno", :action => "edit", :id => aluno %> ou
+		<%= link_to "Excluir", { :controller => "aluno", :action => "delete", :id => aluno }, :confirm => "Deseja realmente excluir o aluno?" %>
+	</td>
+</tr>
+<tbody>
+<% end %>
+</table>
+<br><br>
+<%= link_to "Gerar PDF", :action => "gerar_pdf", :alunos => @alunos, :tipo => "Alunos do " + @alunos[0].curso.nome.to_s %>
+<% end %>
+<% else %>
+Selecione um curso
+<% end %>

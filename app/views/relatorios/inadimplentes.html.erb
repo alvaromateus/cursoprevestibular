@@ -1,0 +1,31 @@
+<h2>Inadimplentes</h2>
+<%= stylesheet_link_tag 'default' %>
+
+<div id="pesquisa"></div><br>
+<table border="0" cellpading="1" cellpacing="1">
+<tbody>
+<tr>
+	<tt></tt>
+	<tt></tt>
+	<tt></tt>
+	<tt></tt>
+</tr>
+<% unless @alunos.empty? %>
+<% @alunos.each do |aluno| %>
+<tr>
+	<td><%= aluno.nome %><td>
+	<td><%= aluno.telefone %><td>
+	<td><%= aluno.celular %><td>
+	<td>
+		<%= link_to "Editar", :action => "edit", :id => aluno %> ou
+		<%= link_to "Excluir", { :action => "delete", :id => aluno }, :confirm => "Deseja realmente excluir o aluno?" %>
+	</td>
+</tr>
+<tbody>
+<% end %>
+</table>
+<br><br>
+<%= link_to "Gerar PDF", :action => "gerar_pdf", :alunos => @alunos, :tipo => "Alunos inadimplentes" %>
+<% else %>
+Não há alunos inadimplentes
+<% end %>

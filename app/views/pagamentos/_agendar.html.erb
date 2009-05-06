@@ -1,0 +1,9 @@
+<%= form_remote_tag (:url => {:action => "simula"}, :update => "simulacao") %>
+<p>Nº de parcelas: <%= text_field :pagamento, :quantidade,  :size => 1 %> | 
+Dia Vencimento: <%= text_field :pagamento, :dia,  :size => 1 %> |
+Desconto:  R$ <%= text_field :pagamento, :desconto,  :size => 3 %> 
+</p>
+<%= submit_tag "Simular" %>
+
+<div id="simulacao">
+</div>
