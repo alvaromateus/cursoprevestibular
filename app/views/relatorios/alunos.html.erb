@@ -36,8 +36,8 @@ Nenhum aluno <br>
 <% end %>
 </table>
 <br><br>
-<%= link_to "Gerar PDF", :action => "gerar_pdf", :alunos => @alunos, :tipo => "Alunos do " + @alunos[0].curso.nome.to_s %>
+<%= link_to "Salvar PDF ", :action => "gerar_pdf", :alunos => @alunos, :tipo => "Alunos do " + @alunos[0].curso.nome.to_s %>
 <% end %>
 <% else %>
-Selecione um curso 
+Selecione um curso
 <% end %>
