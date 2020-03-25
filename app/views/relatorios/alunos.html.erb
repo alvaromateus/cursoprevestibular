@@ -18,7 +18,7 @@
 	<tt></tt>
 	<tt></tt>
 </tr>
-<% unless (@alunos == nil) 
+<% unless (@alunos == nil)
 if @alunos.empty? %>
 Nenhum aluno <br>
 <% else %>
@@ -39,5 +39,5 @@ Nenhum aluno <br>
 <%= link_to "Gerar PDF", :action => "gerar_pdf", :alunos => @alunos, :tipo => "Alunos do " + @alunos[0].curso.nome.to_s %>
 <% end %>
 <% else %>
-Selecione um curso
+Selecione um curso 
 <% end %>
